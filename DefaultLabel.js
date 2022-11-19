@@ -34,7 +34,7 @@ export default class DefaultLabel extends React.Component {
             <View
               style={[
                 styles.sliderLabel,
-                { left: oneMarkerLeftPosition - width / 2 },
+                { left: oneMarkerLeftPosition - width / 2 + sliderRadius },
                 oneMarkerPressed && styles.markerPressed,
               ]}
             >
@@ -47,7 +47,7 @@ export default class DefaultLabel extends React.Component {
             <View
               style={[
                 styles.sliderLabel,
-                { left: twoMarkerLeftPosition - width / 2 },
+                { left: twoMarkerLeftPosition - width / 2 + sliderRadius },
                 twoMarkerPressed && styles.markerPressed,
               ]}
             >

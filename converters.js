@@ -38,50 +38,38 @@ const closest = (array, n) => {
   return -1;
 };
 
-export function valueToPosition(
-  value,
-  valuesArray,
-  sliderLength,
-  markerSize = 0,
-) {
-  if (value === undefined) return undefined;
+export function valueToPosition(value, valuesArray, sliderLength) {
   const index = closest(valuesArray, value);
+
   const arrLength = valuesArray.length - 1;
   const validIndex = index === -1 ? arrLength : index;
-  const output =
-    ((sliderLength - markerSize) * validIndex) / arrLength + markerSize / 2;
 
-  return output;
+  return (sliderLength * validIndex) / arrLength;
 }
 
-export function positionToValue(
-  position,
-  valuesArray,
-  sliderLength,
-  markerSize = 0,
-) {
+export function positionToValue(position, valuesArray, sliderLength) {
+  var arrLength;
+  var index;
+
   if (position < 0 || sliderLength < position) {
     return null;
   } else {
-    const arrLength = valuesArray.length - 1;
-    const offset = (position - markerSize / 2) / (sliderLength - markerSize);
-    const index =
-      (arrLength * (position - markerSize / 2 + offset * markerSize)) /
-      sliderLength;
-    const output = valuesArray[Math.round(index)];
-
-    return output;
+    arrLength = valuesArray.length - 1;
+    index = (arrLength * position) / sliderLength;
+    return valuesArray[Math.round(index)];
   }
 }
 
 export function createArray(start, end, step) {
-  const direction = start - end > 0 ? -1 : 1;
-  const result = [];
+  var i;
+  var length;
+  var direction = start - end > 0 ? -1 : 1;
+  var result = [];
   if (!step) {
     return result;
   } else {
-    const length = Math.abs((start - end) / step) + 1;
-    for (let i = 0; i < length; i++) {
+    length = Math.abs((start - end) / step) + 1;
+    for (i = 0; i < length; i++) {
       result.push(start + i * Math.abs(step) * direction);
     }
     return result;
